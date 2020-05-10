@@ -37,23 +37,27 @@ def load_json(url, filepath, reinit=False):
     return json_dict
 
 
-def main():
+def process_team_index():
     url = "https://www.espn.com/nfl/teams"
     filepath = "cache/json/nfl/teams/index.json"
+
     json_dict = load_json(url, filepath)
+
     json_dict = json_dict.get("page")
     json_dict = json_dict.get("content")
     json_dict = json_dict.get("leagueTeams")
+
     groups = {}
     for column in json_dict.get("columns"):
         for group in column.get("groups"):
             div_reg = group.get("nm")
-            # (division, region) = div_reg.split()
+
             teams = []
             for tm in group.get("tms"):
                 team_name = tm.get("n")
                 team_logo = tm.get("p")
                 team_id = tm.get("id")
+
                 links = {}
                 for lk in tm.get("lk"):
                     title = lk.get("l")
@@ -61,6 +65,7 @@ def main():
                         continue
                     url = lk.get("u")
                     links[title] = url
+
                 team = {
                     "id": team_id,
                     "name": team_name,
@@ -68,10 +73,15 @@ def main():
                     "links": links
                 }
                 teams.append(team)
+
             groups[div_reg] = teams
+
+    return groups
+
+
+def main():
+    groups = process_team_index()
     print(json.dumps(groups))
-    # print(json_dict.keys())
-    # print(json.dumps(json_dict))
 
 
 if __name__ == "__main__":
