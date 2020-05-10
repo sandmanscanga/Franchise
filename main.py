@@ -47,12 +47,11 @@ def process_team_index():
     json_dict = json_dict.get("content")
     json_dict = json_dict.get("leagueTeams")
 
-    groups = {}
+    teams = []
     for column in json_dict.get("columns"):
         for group in column.get("groups"):
             div_reg = group.get("nm")
 
-            teams = []
             for tm in group.get("tms"):
                 team_name = tm.get("n")
                 team_logo = tm.get("p")
@@ -67,6 +66,7 @@ def process_team_index():
                     links[title] = url
 
                 team = {
+                    "group": div_reg,
                     "id": team_id,
                     "name": team_name,
                     "logo": team_logo,
@@ -74,14 +74,15 @@ def process_team_index():
                 }
                 teams.append(team)
 
-            groups[div_reg] = teams
-
-    return groups
+    return teams
 
 
 def main():
-    groups = process_team_index()
-    print(json.dumps(groups))
+    teams = process_team_index()
+    # for team in teams:
+    #     print(json.dumps(team, indent=2))
+    #     break
+    print(json.dumps(teams))
 
 
 if __name__ == "__main__":
