@@ -1,0 +1,70 @@
+
+body {
+    font-family: "Poppins", sans-serif;
+    width: 100%;
+    background: #212529;
+    color: #eeeeee;
+    margin-top: 4rem;
+}
+h1, h2, h3, h4, h5, h6, p {
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+}
+
+hr.silent {
+    padding-top: 2rem;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin: 0px 0px 0px 0px;
+    border: none;
+}
+
+.bg-black {
+    background: black;
+}
+.bg-white {
+    background: white;
+}
+.txt-black {
+    color: black;
+}
+.txt-white {
+    color: white;
+}
+
+.black-bubble {
+    background: black;
+    color: white;
+    border: 3px solid red;
+    border-radius: 10px;
+}
+.white-bubble {
+    background: white;
+    color: black;
+    border: 3px solid black;
+    border-radius: 10px;
+}
+a.silent-link {
+    text-decoration: none;
+}
+a.silent-link:hover {
+    color: yellow;
+    text-decoration: none;
+}
+
+.btn-warning {
+    font-size: 1.6rem;
+}
+.btn-warning:hover {
+    color: #000000;
+}
+.btn-dark {
+    font-size: 1.5rem;
+    background: #000000;
+    color: #efefef;
+}
+.btn-dark:hover {
+    background: #000000;
+    color: #ffff00;
+}
