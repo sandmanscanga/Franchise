@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="/static/app/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/app/css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="/static/app/css/style.css">
+    <title>Franchise {% block title %}{% endblock title %}</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark bg-black fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand ml-5" href="{% url 'testing' %}">Franchise</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav ml-auto">
+              <a class="btn nav-item nav-link mr-5" href="#">Teams</a>
+              <a class="btn nav-item nav-link mr-5" href="#">Players</a>
+              <a class="btn nav-item nav-link mr-5" href="#">Stats</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main role="main">
+      {% block content %}{% endblock content %}
+    </main>
+    <footer>
+      {% if is_paginated %}
+        <hr class="silent">
+        <div class="container text-center">
+          {% if page_obj.has_previous %}
+            <a class="btn btn-lg btn-dark mr-1" href="?page=1">First</a>
+            <a class="btn btn-lg btn-dark mr-3" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+          {% endif %}
+          {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+              <a class="btn btn-lg btn-warning mx-1" href="?page={{ num }}">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-5' and num < page_obj.number|add:'5' %}
+              <a class="btn btn-lg btn-dark mx-1" href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+          {% endfor %}
+          {% if page_obj.has_next %}
+            <a class="btn btn-lg btn-dark ml-3" href="?page={{ page_obj.next_page_number }}">Next</a>
+            <a class="btn btn-lg btn-dark ml-1" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+          {% endif %}
+        </div>
+        <hr class="silent">
+      {% endif %}
+    </footer>
+    <script type="text/javascript" src="/static/app/js/jquery-3.3.1.slim.min.js"></script>
+    <script type="text/javascript" src="/static/app/js/popper.min.js"></script>
+    <script type="text/javascript" src="/static/app/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/app/js/all.js"></script>
+  </body>
+</html>
