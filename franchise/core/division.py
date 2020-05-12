@@ -1,4 +1,4 @@
-from objects.table import Table
+from table import Table
 
 
 class Division(Table):
