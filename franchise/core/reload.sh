@@ -1,9 +1,9 @@
 #!/bin/bash
 
-CORE_DIR=$(echo $0 | sed -u "s/\/reload.sh//g")
-VENV_PATH=$(echo "${CORE_DIR}/../../venv/bin/python3")
-MNG_PATH=$(echo "${CORE_DIR}/../manage.py")
-FIXT_PATH=$(echo "${CORE_DIR}/cache/fixtures/all.json")
+CORE_DIR=$(echo $0 | sed -u "s/reload.sh//g")
+VENV_PATH=$(echo "${CORE_DIR}../../venv/bin/python3")
+MNG_PATH=$(echo "${CORE_DIR}../manage.py")
+FIXT_PATH=$(echo "${CORE_DIR}cache/fixtures/all.json")
 
 function wipe_database() {
     $VENV_PATH $MNG_PATH shell -c "\

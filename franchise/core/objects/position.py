@@ -1,4 +1,4 @@
-from table import Table
+from framework.table import Table
 
 
 class Position(Table):

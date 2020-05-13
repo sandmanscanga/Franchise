@@ -1,7 +1,7 @@
-from rsync import get_nfl_json
-from table import Table
-from division import Division
-from region import Region
+from framework.driver import get_nfl_json
+from framework.table import Table
+from objects.division import Division
+from objects.region import Region
 
 class Team(Table):
 
@@ -12,6 +12,7 @@ class Team(Table):
         regions = Region()
 
         nfl_json = get_nfl_json()
+
         for json_data in nfl_json.values():
             team_json = json_data.get("roster")
             team_json = team_json.get("page").get("content")

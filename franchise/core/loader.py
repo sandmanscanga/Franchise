@@ -1,17 +1,17 @@
-from division import Division
-from region import Region
-from position import Position
-from category import Category
-from team import Team
+from framework.driver import get_nfl_json
+from objects.division import Division
+from objects.region import Region
+from objects.position import Position
+from objects.category import Category
+from objects.team import Team
 import json
 import os
 
 
 def build_fixtures():
-    fixture_dir = "core/cache/fixtures"
-    os.makedirs(fixture_dir, exist_ok=True)
+    cache_dir = __file__.replace("loader.py", "cache")
 
-    objects = {
+    obj_map = {
         "division": list(Division()),
         "region": list(Region()),
         "position": list(Position()),
@@ -19,8 +19,11 @@ def build_fixtures():
         "team": list(Team())
     }
 
+    fixture_dir = f"{cache_dir}/fixtures"
+    os.makedirs(fixture_dir, exist_ok=True)
+
     fixtures = []
-    for key, value in objects.items():
+    for key, value in obj_map.items():
         filename = f"{fixture_dir}/{key}.json"
         with open(filename, "w") as f:
             json.dump(value, f)
