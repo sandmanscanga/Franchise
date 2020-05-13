@@ -74,7 +74,7 @@ def get_nfl_json(reinit=False):
 
     if not os.path.isfile(nfl_json_path) or reinit:
         url = "https://www.espn.com/nfl/teams"
-        filepath = "cache/index.html"
+        filepath = "cache/nfl.html"
         json_dict = fetch_json(url, filepath)
 
         teams = get_team_index(json_dict)
