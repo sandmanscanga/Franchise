@@ -7,6 +7,7 @@ import os
 
 def fetch_json(url, filepath, reinit=False):
     if not os.path.isfile(filepath) or reinit:
+        print(f"GET {url}")
         r = requests.get(
             url=url,
             timeout=10,
@@ -101,12 +102,3 @@ def get_nfl_json(reinit=False):
             nfl_json = json.load(f)
 
     return nfl_json
-
-
-def main():
-    nfl_json = get_nfl_json()
-    print(json.dumps(nfl_json))
-
-
-if __name__ == "__main__":
-    main()

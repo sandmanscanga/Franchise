@@ -3,12 +3,14 @@ from region import Region
 from position import Position
 from category import Category
 from team import Team
-import argparse
 import json
 import os
 
 
 def build_fixtures():
+    fixture_dir = "core/cache/fixtures"
+    os.makedirs(fixture_dir, exist_ok=True)
+
     objects = {
         "division": list(Division()),
         "region": list(Region()),
@@ -19,31 +21,14 @@ def build_fixtures():
 
     fixtures = []
     for key, value in objects.items():
-        filename = f"core/cache/fixtures/{key}.json"
-        filedir = "/".join(filename.split("/")[:-1])
-        os.makedirs(filedir, exist_ok=True)
+        filename = f"{fixture_dir}/{key}.json"
         with open(filename, "w") as f:
             json.dump(value, f)
         fixtures += value
 
-    return fixtures
-
-
-def main(args):
-    fixtures = build_fixtures()
-    if args.outfile:
-        with open(args.outfile, "w") as f:
-            json.dump(fixtures, f)
-    else:
-        print(json.dumps(fixtures))
+    with open(f"{fixture_dir}/all.json", "w") as f:
+        json.dump(fixtures, f)
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "-o", "--outfile", metavar="outfile",
-        type=str, required=False, default=None,
-        help="specify output filename to write fixtures to"
-    )
-    args = parser.parse_args()
-    main(args)
+    build_fixtures()
