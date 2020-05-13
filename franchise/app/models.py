@@ -17,6 +17,7 @@ class Region(models.Model):
 
 class Position(models.Model):
     name = models.CharField(max_length=10)
+    fullname = models.CharField(max_length=20)
 
     def __str__(self):
         return self.name
@@ -24,20 +25,26 @@ class Position(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=20)
+    sortkey = models.CharField(max_length=20)
 
     def __str__(self):
         return self.name
 
 
 class Team(models.Model):
-    uid = models.CharField(max_length=40)
-    logo = models.CharField(max_length=10)
+    uid = models.CharField(max_length=20)
+    logo = models.CharField(max_length=40)
 
-    ## Foreign Key : Division
+    ## Foreign Keys : Division, Region
     division = models.ForeignKey(
         Division,
         on_delete=models.CASCADE
     )
+    region = models.ForeignKey(
+        Region,
+        on_delete=models.CASCADE
+    )
+
 
     def __str__(self):
         return self.uid

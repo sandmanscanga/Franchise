@@ -70,11 +70,11 @@ def get_team_index(json_dict):
 
 
 def get_nfl_json(reinit=False):
-    nfl_json_path = "cache/nfl.json"
+    nfl_json_path = "core/cache/nfl.json"
 
     if not os.path.isfile(nfl_json_path) or reinit:
         url = "https://www.espn.com/nfl/teams"
-        filepath = "cache/nfl.html"
+        filepath = "core/cache/nfl.html"
         json_dict = fetch_json(url, filepath)
 
         teams = get_team_index(json_dict)
@@ -86,7 +86,7 @@ def get_nfl_json(reinit=False):
 
             team_parts = {}
             for link_title, team_link in team_links.items():
-                link_path = f"cache/{team_name}/{link_title}.html"
+                link_path = f"core/cache/teams/{team_name}/{link_title}.html"
                 team_json_part = fetch_json(team_link, link_path)
                 team_parts[link_title] = team_json_part
 
