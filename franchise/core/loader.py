@@ -1,6 +1,5 @@
 from framework.driver import get_nfl_json
 from objects.division import Division
-from objects.region import Region
 from objects.position import Position
 from objects.category import Category
 from objects.team import Team
@@ -13,7 +12,6 @@ def build_fixtures():
 
     obj_map = {
         "division": list(Division()),
-        "region": list(Region()),
         "position": list(Position()),
         "category": list(Category()),
         "team": list(Team())

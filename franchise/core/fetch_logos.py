@@ -1,9 +1,8 @@
 from framework.driver import get_nfl_json
-import argparse
 import os
 
 
-def main(args):
+def fetch_logos(outdir):
     outdir = args.outdir.rstrip("/")
     os.makedirs(outdir, exist_ok=True)
 
@@ -15,19 +14,25 @@ def main(args):
 
         logo_url = json_data.get("logo")
         abbrev = json_data.get("abbrev")
+
         outpath = f"{outdir}/{abbrev}.png"
+        if os.path.isfile(outpath):
+            print(f"[*] Skipping logo: {outpath}")
+            continue
 
         cmd = f"wget {logo_url} -O {outpath} -q"
-        print(f"GET {logo_url}")
+        print(f"[+] Getting logo: {logo_url}")
         os.system(cmd)
 
 
 if __name__ == "__main__":
+    import argparse
+
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "-o", "--outdir", metavar="outdir",
-        type=str, required=False, default="logos",
+        type=str, required=False, default="../app/static/app/logos/",
         help="specify the directory to write logos to"
     )
     args = parser.parse_args()
-    main(args)
+    fetch_logos(args.outdir)

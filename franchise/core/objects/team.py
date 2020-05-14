@@ -1,7 +1,6 @@
 from framework.driver import get_nfl_json
 from framework.table import Table
 from objects.division import Division
-from objects.region import Region
 
 class Team(Table):
 
@@ -9,7 +8,6 @@ class Team(Table):
         teams = []
 
         divisions = Division()
-        regions = Region()
 
         nfl_json = get_nfl_json()
 
@@ -23,14 +21,12 @@ class Team(Table):
             logo = f"/static/app/logos/{abbrev}.png"
 
             standingSummary = profile.get("standingSummary")
-            div_reg = standingSummary.split(" in ")[-1]
-            (_div, _reg) = div_reg.split()
+            _div = standingSummary.split(" in ")[-1]
             div = divisions.find(_div)
-            reg = regions.find(_reg)
 
-            team = (uid, logo, div, reg)
+            team = (uid, logo, div)
             teams.append(team)
 
         self.values = tuple(teams)
-        self.keys = ("uid", "logo", "division", "region")
+        self.keys = ("uid", "logo", "division")
         self.model = "app.team"

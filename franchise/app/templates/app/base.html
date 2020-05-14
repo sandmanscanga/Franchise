@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="/static/app/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/static/app/css/fonts.css">
     <link rel="stylesheet" type="text/css" href="/static/app/css/style.css">
-    <title>Franchise {% block title %}{% endblock title %}</title>
+    <title>Franchise{% block title %}{% endblock title %}</title>
   </head>
   <body>
     <header>
@@ -19,9 +19,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav ml-auto">
-              <a class="btn nav-item nav-link mr-5" href="#">Teams</a>
-              <a class="btn nav-item nav-link mr-5" href="#">Players</a>
-              <a class="btn nav-item nav-link mr-5" href="#">Stats</a>
+              <a class="btn nav-item nav-link mr-5" href="{% url 'division-list' %}">Divisions</a>
             </div>
           </div>
         </div>
