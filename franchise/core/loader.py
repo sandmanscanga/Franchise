@@ -1,8 +1,12 @@
-from framework.driver import get_nfl_json
 from objects.division import Division
 from objects.position import Position
 from objects.category import Category
 from objects.team import Team
+from objects.record import Record
+from objects.profile import Profile
+from objects.color import Color
+from objects.teamnav import TeamNav
+from indie.fetch_logos import fetch_logos
 import json
 import os
 
@@ -14,7 +18,11 @@ def build_fixtures():
         "division": list(Division()),
         "position": list(Position()),
         "category": list(Category()),
-        "team": list(Team())
+        "team": list(Team()),
+        "record": list(Record()),
+        "profile": list(Profile()),
+        "color": list(Color()),
+        "teamnav": list(TeamNav())
     }
 
     fixture_dir = f"{cache_dir}/fixtures"
@@ -32,4 +40,18 @@ def build_fixtures():
 
 
 if __name__ == "__main__":
-    build_fixtures()
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--get-logos", dest="logos",
+        action="store_true", required=False,
+        help="specify the output directory for writing team logos"
+    )
+    args = parser.parse_args()
+    if args.logos:
+        logo_path = "../app/static/app/logos/"
+        outdir = __file__.replace("loader.py", logo_path)
+        fetch_logos(outdir=outdir)
+    else:
+        build_fixtures()

@@ -2,8 +2,8 @@ from framework.driver import get_nfl_json
 import os
 
 
-def fetch_logos(outdir):
-    outdir = args.outdir.rstrip("/")
+def fetch_logos(outdir=""):
+    outdir = outdir.rstrip("/")
     os.makedirs(outdir, exist_ok=True)
 
     nfl_json = get_nfl_json()
@@ -31,7 +31,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "-o", "--outdir", metavar="outdir",
-        type=str, required=False, default="../app/static/app/logos/",
+        type=str, required=False, default="../../app/static/app/logos/",
         help="specify the directory to write logos to"
     )
     args = parser.parse_args()
