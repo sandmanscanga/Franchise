@@ -1,0 +1,21 @@
+{% extends "app/base.html" %}
+{% block title %} - Division Detail {% endblock title %}
+{% block content %}
+  <hr class="silent">
+  <div class="container text-center">
+    <div class="bg-white txt-black rounded p-3">
+      <div class="bg-black txt-white rounded p-3">
+        <h1>{{ division.name }}</h1>
+      </div>
+      <div class="row pt-3">
+        <div class="col-md">
+          <a class="btn btn-lg btn-dark w-100 py-3" href="{% url 'division-teams' division.pk %}">Teams</a>
+        </div>
+        <div class="col-md">
+          <a class="btn btn-lg btn-dark w-100 py-3" href="#">Players</a>
+        </div>
+      </div>
+    </div>
+    <hr class="silent">
+  </div>
+{% endblock content %}

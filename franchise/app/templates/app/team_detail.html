@@ -1,0 +1,23 @@
+{% extends "app/base.html" %}
+{% block title %} - Team Detail {% endblock title %}
+{% block content %}
+  <div class="container text-center">
+    <hr class="silent">
+    <div class="rounded p-3" style="background: #{{ team.color.main  }};color: #{{ team.color.alt }}">
+      <div class="rounded p-3" style="background: #{{ team.color.alt }};color: #{{ team.color.main }}">
+        <div class="row align-items-center">
+          <div class="col-md">
+            <img width="100" height="100" src="/static/app/logos/{{ team.profile.abbr }}.png">
+          </div>
+          <div class="col-md-7">
+            <h1>{{ team.profile.fullname }}</h1>
+          </div>
+          <div class="col-md">
+            <h2>Record</h2>
+            <h4>{{ team.record }}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

@@ -1,5 +1,7 @@
+from framework.table import Table
 
-class Position:
+
+class Position(Table):
 
     def __init__(self):
         self.values = (
@@ -23,4 +25,3 @@ class Position:
         )
         self.keys = ("name", "fullname")
         self.model = "app.position"
-        self.key = "name"

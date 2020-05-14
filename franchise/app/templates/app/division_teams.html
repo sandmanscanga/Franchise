@@ -1,0 +1,40 @@
+{% extends "app/base.html" %}
+{% block title %} - Division Teams {% endblock title %}
+{% block content %}
+  <div class="container text-center">
+    <hr class="silent">
+    <div class="bg-white txt-black rounded p-3">
+      <div class="bg-black txt-white rounded p-3">
+        <div class="row align-items-center">
+          <div class="col-md">
+            <h1>{{ teams.first.division.name }}</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="silent">
+    {% for team in teams %}
+      <div class="rounded p-3 mb-3" style="background: #{{ team.color.main  }};color: #{{ team.color.alt }}">
+        <div class="rounded p-3" style="background: #{{ team.color.alt  }};color: #{{ team.color.main }}">
+          <div class="row align-items-center">
+            <div class="col-md">
+              <a href="{% url 'team-detail' team.pk %}">
+                <img width="100" height="100" src="/static/app/logos/{{ team.profile.abbr }}.png">
+              </a>
+            </div>
+            <div class="col-md-7">
+              <a class="silent-link" style="color: #{{ team.color.main }}" href="{% url 'team-detail' team.pk %}">
+                <h1>{{ team.profile.fullname }}</h1>
+              </a>
+            </div>
+            <div class="col-md">
+              <h2>Record</h2>
+              <h4>{{ team.record }}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    <hr class="silent">
+  </div>
+{% endblock content %}
