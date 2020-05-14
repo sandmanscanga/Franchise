@@ -58,6 +58,11 @@ if __name__ == "__main__":
         action="store_true", required=False,
         help="specify the wipe command to wipe all records from project database"
     )
+    parser.add_argument(
+        "-b", "--build", dest="build",
+        action="store_true", required=False,
+        help="specify the build command to build the fixtures from core objects"
+    )
     args = parser.parse_args()
     if args.logos:
         logo_path = "../app/static/app/logos/"
@@ -68,5 +73,7 @@ if __name__ == "__main__":
         os.system("utils/wipe.sh")
     elif args.reload:
         os.system("utils/reload.sh")
-    else:
+    elif args.build:
         build_fixtures()
+    else:
+        parser.print_help()
