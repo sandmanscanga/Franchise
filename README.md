@@ -19,7 +19,6 @@ python3 loader.py -w
 python3 loader.py -r
 python3 loader.py --get-logos
 python3 loader.py --get-headshots
-cd ..
-python3 manage.py runserver
+python3 ../manage.py runserver
 ## Open browser and visit http://localhost:8000
 ```
