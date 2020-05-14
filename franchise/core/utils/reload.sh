@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CORE_DIR=$(echo $0 | sed -u "s/reload.sh//g")
-VENV_PATH=$(echo "${CORE_DIR}../../../venv/bin/python3")
+VENV_PATH=$(echo "${CORE_DIR}../../../venv/bin/python")
 MNG_PATH=$(echo "${CORE_DIR}../../manage.py")
 FIXT_PATH=$(echo "${CORE_DIR}../cache/fixtures/all.json")
 

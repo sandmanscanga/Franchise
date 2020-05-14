@@ -48,10 +48,25 @@ if __name__ == "__main__":
         action="store_true", required=False,
         help="specify the output directory for writing team logos"
     )
+    parser.add_argument(
+        "-r", "--reload", dest="reload",
+        action="store_true", required=False,
+        help="specify the reload command to load fixtures into project database"
+    )
+    parser.add_argument(
+        "-w", "--wipe", dest="wipe",
+        action="store_true", required=False,
+        help="specify the wipe command to wipe all records from project database"
+    )
     args = parser.parse_args()
     if args.logos:
         logo_path = "../app/static/app/logos/"
         outdir = __file__.replace("loader.py", logo_path)
         fetch_logos(outdir=outdir)
+    elif args.wipe:
+        print("[!] Wiping the project database records.")
+        os.system("utils/wipe.sh")
+    elif args.reload:
+        os.system("utils/reload.sh")
     else:
         build_fixtures()
