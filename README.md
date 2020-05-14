@@ -1,8 +1,6 @@
 # Franchise
 Automatic Fantasy Football Stat Tracking Application
 
-![Worflow Screenshot](docs/images/workflow.png)
-
 ## Setup / Install
 
 ```bash
@@ -22,3 +20,7 @@ python3 loader.py --get-headshots
 python3 ../manage.py runserver
 ## Open browser and visit http://localhost:8000
 ```
+
+![Worflow Screenshot](docs/images/workflow.png)
+
+![Front-End Example Screenshot](docs/images/front-end-example.png)

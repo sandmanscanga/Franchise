@@ -39,6 +39,7 @@ class TeamListView(ListView):
     template_name = "app/team_list.html"
     context_object_name = "teams"
     ordering = ["profile__name"]
+    paginate_by = 16
 
 
 class TeamDetailView(DetailView):

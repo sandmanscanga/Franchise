@@ -3,14 +3,18 @@
 {% block content %}
   <div class="container text-center">
     <hr class="silent">
-    <div class="rounded p-3" style="background: #{{ players.first.team.color.main  }};color: #{{ players.first.team.color.alt }}">
-      <div class="rounded p-3" style="background: #{{ players.first.team.color.alt }};color: #{{ players.first.team.color.main }}">
+    <div class="bg-white txt-black rounded p-3">
+      <div class="bg-black txt-white rounded p-3">
         <div class="row align-items-center">
           <div class="col-md">
-            <img height="100" src="/static/app/logos/{{ players.first.team.profile.abbr }}.png">
+            <a href="{% url 'team-detail' players.first.team.pk %}">
+              <img height="100" src="/static/app/logos/{{ players.first.team.profile.abbr }}.png">
+            </a>
           </div>
           <div class="col-md-7">
-            <h1>{{ players.first.team.profile.fullname }}</h1>
+            <a class="silent-link txt-white" href="{% url 'team-detail' players.first.team.pk %}">
+              <h1>{{ players.first.team.profile.fullname }}</h1>
+            </a>
           </div>
           <div class="col-md">
             <h2>Record</h2>

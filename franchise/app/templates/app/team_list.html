@@ -3,17 +3,23 @@
 {% block content %}
   <div class="container text-center">
     <hr class="silent">
+    <div class="bg-white txt-black rounded p-3">
+      <div class="bg-black txt-white rounded p-3">
+        <h1>Teams</h1>
+      </div>
+    </div>
+    <hr class="silent">
     {% for team in teams %}
       <div class="rounded p-3 mb-3" style="background: #{{ team.color.main  }};color: #{{ team.color.alt }}">
         <div class="rounded p-3" style="background: #{{ team.color.alt  }};color: #{{ team.color.main }}">
           <div class="row align-items-center">
             <div class="col-md">
-              <a href="{% url 'team-detail' team.pk %}">
+              <a href="{% url 'team-players' team.pk %}">
                 <img height="100" src="/static/app/logos/{{ team.profile.abbr }}.png">
               </a>
             </div>
             <div class="col-md-7">
-              <a class="silent-link" style="color: #{{ team.color.main }}" href="{% url 'team-detail' team.pk %}">
+              <a class="silent-link" style="color: #{{ team.color.main }}" href="{% url 'team-players' team.pk %}">
                 <h1>{{ team.profile.fullname }}</h1>
               </a>
             </div>
