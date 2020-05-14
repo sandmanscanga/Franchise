@@ -1,0 +1,35 @@
+{% extends "app/base.html" %}
+{% block title %} - Player List {% endblock title %}
+{% block content %}
+  <div class="container text-center">
+    <hr class="silent">
+    <div class="bg-white txt-black rounded p-3">
+      <div class="bg-black txt-white rounded p-3">
+        <h1>Players</h1>
+      </div>
+    </div>
+    <hr class="silent">
+    {% for player in players %}
+      <div class="rounded p-3 mb-3" style="background: #{{ player.team.color.main  }};color: #{{ player.team.color.alt }}">
+        <div class="rounded p-3" style="background: #{{ player.team.color.alt  }};color: #{{ player.team.color.main }}">
+          <div class="row align-items-center">
+            <div class="col-md">
+              <a href="{% url 'player-detail' player.pk %}">
+                <img height="100" src="{{ player.headshot }}">
+              </a>
+            </div>
+            <div class="col-md-7">
+              <a class="silent-link" style="color: #{{ player.team.color.main }}" href="{% url 'player-detail' player.pk %}">
+                <h1>{{ player.name }}</h1>
+              </a>
+            </div>
+            <div class="col-md">
+              <h2>{{ player.position }}</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    <hr class="silent">
+  </div>
+{% endblock content %}

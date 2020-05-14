@@ -114,8 +114,7 @@ class Player(models.Model):
     uid = models.CharField(max_length=40)
     guid = models.CharField(max_length=60)
     headshot = models.CharField(max_length=80)
-    shortname = models.CharField(max_length=40)
-    fullname = models.CharField(max_length=60)
+    name = models.CharField(max_length=60)
 
     ## Foreign Keys : Position, Team
     position = models.ForeignKey(
@@ -128,7 +127,7 @@ class Player(models.Model):
     )
 
     def __str__(self):
-        return f"{self.fullname} - {self.position.name}"
+        return f"{self.name} - {self.position.name}"
 
 
 class PlayerNav(models.Model):

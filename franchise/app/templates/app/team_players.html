@@ -1,0 +1,51 @@
+{% extends "app/base.html" %}
+{% block title %} - Team Players {% endblock title %}
+{% block content %}
+  <div class="container text-center">
+    <hr class="silent">
+    <div class="bg-white txt-black rounded p-3">
+      <div class="bg-black txt-white rounded p-3">
+        <div class="row align-items-center">
+          <div class="col-md">
+            <a href="{% url 'team-detail' players.first.team.pk %}">
+              <img height="100" src="/static/app/logos/{{ players.first.team.profile.abbr }}.png">
+            </a>
+          </div>
+          <div class="col-md-7">
+            <a class="silent-link txt-white" href="{% url 'team-detail' players.first.team.pk %}">
+              <h1>{{ players.first.team.profile.fullname }}</h1>
+            </a>
+          </div>
+          <div class="col-md">
+            <h2>Record</h2>
+            <h4>{{ players.first.team.record }}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="silent">
+    <hr class="silent">
+    {% for player in players %}
+      <div class="rounded p-3 mb-3" style="background: #{{ player.team.color.main  }};color: #{{ player.team.color.alt }}">
+        <div class="rounded p-3" style="background: #{{ player.team.color.alt  }};color: #{{ player.team.color.main }}">
+          <div class="row align-items-center">
+            <div class="col-md">
+              <a href="{% url 'player-detail' player.pk %}">
+                <img height="100" src="{{ player.headshot }}">
+              </a>
+            </div>
+            <div class="col-md-7">
+              <a class="silent-link" style="color: #{{ player.team.color.main }}" href="{% url 'player-detail' player.pk %}">
+                <h1>{{ player.name }}</h1>
+              </a>
+            </div>
+            <div class="col-md">
+              <h2>{{ player.position }}</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    <hr class="silent">
+  </div>
+{% endblock content %}

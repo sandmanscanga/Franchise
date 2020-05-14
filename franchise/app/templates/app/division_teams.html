@@ -18,12 +18,12 @@
         <div class="rounded p-3" style="background: #{{ team.color.alt  }};color: #{{ team.color.main }}">
           <div class="row align-items-center">
             <div class="col-md">
-              <a href="{% url 'team-detail' team.pk %}">
-                <img width="100" height="100" src="/static/app/logos/{{ team.profile.abbr }}.png">
+              <a href="{% url 'team-players' team.pk %}">
+                <img height="100" src="/static/app/logos/{{ team.profile.abbr }}.png">
               </a>
             </div>
             <div class="col-md-7">
-              <a class="silent-link" style="color: #{{ team.color.main }}" href="{% url 'team-detail' team.pk %}">
+              <a class="silent-link" style="color: #{{ team.color.main }}" href="{% url 'team-players' team.pk %}">
                 <h1>{{ team.profile.fullname }}</h1>
               </a>
             </div>
