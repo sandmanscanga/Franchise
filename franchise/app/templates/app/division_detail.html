@@ -8,10 +8,10 @@
         <h1>{{ division.name }}</h1>
       </div>
       <div class="row pt-3">
-        <div class="col">
-          <a class="btn btn-lg btn-dark w-100 py-3" href="#">Teams</a>
+        <div class="col-md">
+          <a class="btn btn-lg btn-dark w-100 py-3" href="{% url 'division-teams' division.pk %}">Teams</a>
         </div>
-        <div class="col">
+        <div class="col-md">
           <a class="btn btn-lg btn-dark w-100 py-3" href="#">Players</a>
         </div>
       </div>

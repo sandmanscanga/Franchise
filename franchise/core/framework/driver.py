@@ -7,7 +7,7 @@ import os
 
 def fetch_json(url, filepath, reinit=False):
     if not os.path.isfile(filepath) or reinit:
-        print(f"GET {url}")
+        print(f"[+] GET {url}")
         r = requests.get(
             url=url,
             timeout=10,

@@ -9,7 +9,7 @@
       </div>
       <div class="row">
         {% for division in divisions %}
-          <div class="col-3 pt-3">
+          <div class="col-md-3 pt-3">
             <a class="btn btn-lg btn-dark w-100 py-3" href="{% url 'division-detail' division.pk %}"><h4>{{ division.name }}</h4></a>
           </div>
         {% endfor %}

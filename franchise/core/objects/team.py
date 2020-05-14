@@ -54,10 +54,29 @@ class Team(Table):
             ))
 
             ## Colors
-            self.colors.append((
-                profile.get("teamColor"),
-                profile.get("altColor")
-            ))
+            main_color = profile.get("teamColor")
+            alt_color = profile.get("altColor")
+
+            if abbrev == "MIA":
+                alt_color = "ffffff"
+            elif abbrev == "CLE":
+                alt_color = "eb3624"
+            elif abbrev == "TEN":
+                alt_color = "ffffff"
+            elif abbrev == "KC":
+                alt_color = "ffffff"
+            elif abbrev == "LAC":
+                main_color = alt_color
+                alt_color = "ffc313"
+            elif abbrev == "CHI":
+                alt_color = "f26522"
+            elif abbrev == "ATL":
+                alt_color = "a61d33"
+            elif abbrev == "NO":
+                alt_color = "c8aa76"
+
+            color = (main_color, alt_color)
+            self.colors.append(color)
 
             ## TeamNavs
             subnav = team_json.get("subNavigation")
