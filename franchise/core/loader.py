@@ -65,14 +65,15 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
     if args.logos:
-        logo_path = "../app/static/app/logos/"
-        outdir = __file__.replace("loader.py", logo_path)
+        outdir = __file__.replace("loader.py", "../app/static/app/logos/")
         fetch_logos(outdir=outdir)
     elif args.wipe:
         print("[!] Wiping the project database records.")
-        os.system("utils/wipe.sh")
+        wipe_command = __file__.replace("loader.py", "utils/wipe.sh")
+        os.system(wipe_command)
     elif args.reload:
-        os.system("utils/reload.sh")
+        reload_command = __file__.replace("loader.py", "utils/reload.sh")
+        os.system(reload_command)
     elif args.build:
         build_fixtures()
     else:

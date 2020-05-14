@@ -3,6 +3,16 @@
 {% block content %}
   <div class="container text-center">
     <hr class="silent">
+    <div class="bg-white txt-black rounded p-3">
+      <div class="bg-black txt-white rounded p-3">
+        <div class="row align-items-center">
+          <div class="col-md">
+            <h1>{{ teams.first.division.name }}</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="silent">
     {% for team in teams %}
       <div class="rounded p-3 mb-3" style="background: #{{ team.color.main  }};color: #{{ team.color.alt }}">
         <div class="rounded p-3" style="background: #{{ team.color.alt  }};color: #{{ team.color.main }}">
