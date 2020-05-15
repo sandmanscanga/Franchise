@@ -53,6 +53,6 @@ class Stat(Table):
                 if int(_total) == 0:
                     value = 0.0
                 else:
-                    value = int(_points) / int(_total)
+                    value = (int(_points) / int(_total)) * 100  # percent
 
         return (value, string)
