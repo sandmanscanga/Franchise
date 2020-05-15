@@ -8,6 +8,7 @@ from objects.color import Color
 from objects.teamnav import TeamNav
 from objects.player import Player
 from objects.playernav import PlayerNav
+from objects.stat import Stat
 from indie.fetch_logos import fetch_logos
 from indie.fetch_headshots import fetch_headshots
 import json
@@ -27,7 +28,8 @@ def build_fixtures():
         "color": list(Color()),
         "teamnav": list(TeamNav()),
         "player": list(Player()),
-        "playernav": list(PlayerNav())
+        "playernav": list(PlayerNav()),
+        "stat": list(Stat())
     }
 
     fixture_dir = f"{cache_dir}/fixtures"
