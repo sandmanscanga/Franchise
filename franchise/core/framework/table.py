@@ -34,3 +34,4 @@ class Table(object):
         for i, values in enumerate(self.values):
             if values[col_key] == value:
                 return i + 1
+        raise Exception(f"value: '{value}' not found")
