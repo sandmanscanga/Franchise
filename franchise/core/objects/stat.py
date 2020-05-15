@@ -1,7 +1,6 @@
 from framework.driver import get_nfl_json
 from framework.table import Table
 from objects.category import Category
-import json
 
 
 class Stat(Table):
@@ -21,7 +20,7 @@ class Stat(Table):
                 stat_name = stat_json.get("statName")
                 stat_shortdesc = stat_json.get("shortDesc")
                 stat_fulldesc = stat_json.get("desc")
-                _stat_category = stat_json.get("group")
+                _stat_category = stat_json.get("group").title()
                 stat_category = categories.find(_stat_category)
                 stat = (
                     stat_abbr,
@@ -36,4 +35,4 @@ class Stat(Table):
         self.values = tuple(stats)
         self.keys = ("abbr", "name", "shortdesc", "fulldesc", "category")
         self.model = "app.stat"
-        self.key = "abbr"
+        self.key = "name"

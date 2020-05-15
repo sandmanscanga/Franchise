@@ -9,7 +9,7 @@ class Category(Table):
             ("Rushing", "rushingYards"),
             ("Receiving", "receivingYards"),
             ("Defense", "totalTackles"),
-            ("scoring", "totalPoints"),
+            ("Scoring", "totalPoints"),
             ("Returning", "kickReturnYards"),
             ("Kicking", "fieldGoalsMade"),
             ("Punting", "puntYards"),
