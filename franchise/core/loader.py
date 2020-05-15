@@ -10,6 +10,7 @@ from objects.player import Player
 from objects.playernav import PlayerNav
 from objects.stat import Stat
 from objects.teamstat import TeamStat
+from objects.oppstat import OppStat
 from indie.fetch_logos import fetch_logos
 from indie.fetch_headshots import fetch_headshots
 import json
@@ -31,7 +32,8 @@ def build_fixtures():
         "player": list(Player()),
         "playernav": list(PlayerNav()),
         "stat": list(Stat()),
-        "teamstat": list(TeamStat())
+        "teamstat": list(TeamStat()),
+        "oppstat": list(OppStat())
     }
 
     fixture_dir = f"{cache_dir}/fixtures"
