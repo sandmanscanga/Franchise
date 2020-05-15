@@ -69,10 +69,9 @@ class TeamStat(Table):
         self.values = tuple(teamstats)
         self.keys = ("value", "string", "stat", "team")
         self.model = "app.teamstat"
-        # for v in self.values:
-        #     print(type(v[0]))
 
-    def _eval_stat(self, json_dict):
+    @staticmethod
+    def _eval_stat(json_dict):
         value = json_dict.get("value")
         string = json_dict.get("displayValue")
 
