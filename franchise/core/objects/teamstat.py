@@ -32,7 +32,7 @@ class TeamStat(Table):
                     if _ts_stat is not None:
                         ts_stat = stats.find(_ts_stat)
 
-                        (ts_value, ts_string) = self._eval_stat(ts_stat_json)
+                        (ts_value, ts_string) = stats._eval_stat(ts_stat_json)
 
                         teamstat = (ts_value, ts_string, ts_stat, ts_team)
                         teamstats.append(teamstat)
@@ -42,7 +42,7 @@ class TeamStat(Table):
                             _ts_stat = ts_substat_json.get("name")
                             ts_stat = stats.find(_ts_stat)
 
-                            (ts_value, ts_string) = self._eval_stat(ts_substat_json)
+                            (ts_value, ts_string) = stats._eval_stat(ts_substat_json)
 
                             teamstat = (ts_value, ts_string, ts_stat, ts_team)
                             teamstats.append(teamstat)
@@ -54,14 +54,14 @@ class TeamStat(Table):
 
                     if _os_stat is not None:
 
-                        (os_value, os_string) = self._eval_stat(os_stat_json)
+                        (os_value, os_string) = stats._eval_stat(os_stat_json)
 
                         oppstat = (os_value, os_string)
                         self.oppstats.append(oppstat)
                     else:
                         for os_substat_json in os_stat_json.get("stats"):
 
-                            (os_value, os_string) = self._eval_stat(os_substat_json)
+                            (os_value, os_string) = stats._eval_stat(os_substat_json)
 
                             oppstat = (os_value, os_string)
                             self.oppstats.append(oppstat)
@@ -69,23 +69,3 @@ class TeamStat(Table):
         self.values = tuple(teamstats)
         self.keys = ("value", "string", "stat", "team")
         self.model = "app.teamstat"
-
-    @staticmethod
-    def _eval_stat(json_dict):
-        value = json_dict.get("value")
-        string = json_dict.get("displayValue")
-
-        if isinstance(value, int):
-            value = float(value)
-        elif isinstance(value, str):
-            if string in ("0", ""):
-                value = 0.0
-                string = "0.0"
-            elif "-" in string:
-                (_points, _total) = string.split("-")
-                if int(_total) == 0:
-                    value = 0.0
-                else:
-                    value = int(_points) / int(_total)
-
-        return (value, string)

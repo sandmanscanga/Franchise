@@ -36,3 +36,23 @@ class Stat(Table):
         self.keys = ("abbr", "name", "shortdesc", "fulldesc", "category")
         self.model = "app.stat"
         self.key = "name"
+
+    @staticmethod
+    def _eval_stat(json_dict):
+        value = json_dict.get("value")
+        string = json_dict.get("displayValue")
+
+        if isinstance(value, int):
+            value = float(value)
+        elif isinstance(value, str):
+            if string in ("0", ""):
+                value = 0.0
+                string = "0.0"
+            elif "-" in string:
+                (_points, _total) = string.split("-")
+                if int(_total) == 0:
+                    value = 0.0
+                else:
+                    value = int(_points) / int(_total)
+
+        return (value, string)
