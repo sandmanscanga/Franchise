@@ -4,17 +4,17 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="/static/app/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/static/app/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/static/app/css/fonts.css">
     <link rel="stylesheet" type="text/css" href="/static/app/css/style.css">
-    <title>Franchise{% block title %}{% endblock title %}</title>
+    <title>Franchise - {% block title %}{% endblock title %}</title>
   </head>
   <body>
     <header>
       <nav class="navbar navbar-expand-md navbar-dark bg-black fixed-top">
         <div class="container-fluid">
-          <a class="navbar-brand ml-5" href="{% url 'welcome' %}">Franchise</a>
+          <a class="navbar-brand ml-5" href="{% url 'index' %}">Franchise</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
           </button>
@@ -22,7 +22,10 @@
             <div class="navbar-nav ml-auto">
               <a class="btn nav-item nav-link mr-5" href="{% url 'division-list' %}">Divisions</a>
               <a class="btn nav-item nav-link mr-5" href="{% url 'team-list' %}">Teams</a>
+              <a class="btn nav-item nav-link mr-5" href="{% url 'position-list' %}">Positions</a>
               <a class="btn nav-item nav-link mr-5" href="{% url 'player-list' %}">Players</a>
+              <a class="btn nav-item nav-link mr-5" href="{% url 'category-list' %}">Categories</a>
+              <a class="btn nav-item nav-link mr-5" href="{% url 'stat-list' %}">Stats</a>
             </div>
           </div>
         </div>
