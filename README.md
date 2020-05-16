@@ -12,11 +12,11 @@ pip install --upgrade pip
 pip install -r requirements.txt
 cd franchise
 cd core
-python3 loader.py -b
-python3 loader.py -w
-python3 loader.py -r
+python3 loader.py --wipe
+python3 loader.py --build
+python3 loader.py --reload
 python3 loader.py --get-logos
-python3 loader.py --get-headshots
+python3 loader.py --get-headshots  # <- this takes a few minutes to complete
 python3 ../manage.py runserver
 ## Open browser and visit http://localhost:8000
 ```
