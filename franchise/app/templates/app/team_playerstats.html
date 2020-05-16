@@ -1,0 +1,44 @@
+{% extends "app/base.html" %}
+{% block title %} Team Player Stat List {% endblock title %}
+{% block content %}
+  <div class="container text-center">
+    <hr class="silent">
+    <div class="bg-white txt-black p-3">
+      <div class="bg-black txt-white p-3">
+        <div class="row text-center align-items-center">
+          <div class="col">
+            <img width="100" height="100" src="{{ playerstats.first.player.team.logo }}">
+          </div>
+          <div class="col-8">
+            <a class="silent-link txt-white" href="{% url 'team-detail' playerstats.first.player.team.pk %}">
+              <h1>{{ playerstats.first.player.team.profile.fullname }}</h1>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% for playerstat in playerstats %}
+      <hr class="silent">
+      <div class="bg-white txt-black p-3 rounded">
+        <div class="bg-black txt-white p-3 rounded">
+          <div class="row align-items-center">
+            <div class="col">
+              <a href="{% url 'player-detail' playerstat.player.pk %}">
+                <img height="100" src="{{ playerstat.player.headshot }}">
+              </a>
+            </div>
+            <div class="col-6">
+              <a class="silent-link txt-white" href="{% url 'player-detail' playerstat.player.pk %}">
+                <h1>{{ playerstat.player.name }}</h1>
+              </a>
+            </div>
+            <div class="col">
+              <a class="silent-link txt-white" href="{% url 'stat-detail' playerstat.stat.pk %}"><h5>{{ playerstat.stat.shortdesc }}</h5></a><br><h2>{{ playerstat.string }}</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <hr class="silent">
+{% endblock content %}

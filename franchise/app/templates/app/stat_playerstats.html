@@ -1,0 +1,53 @@
+{% extends "app/base.html" %}
+{% block title %} Stat Detail {% endblock title %}
+{% block content %}
+  <hr class="silent">
+  <div class="container text-center">
+    <div class="bg-white txt-black rounded p-3">
+      <div class="bg-black txt-white rounded p-3">
+        <div class="row align-items-center">
+          <div class="col">
+            <h1><strong>{{ playerstats.first.stat.abbr }}</strong></h1>
+          </div>
+          <div class="col">
+            <h3>{{ playerstats.first.stat.shortdesc }}</h3>
+          </div>
+        </div>
+      </div>
+      <hr class="silent">
+      <p class="lead py-3">{{ playerstats.first.stat.fulldesc }}</p>
+    </div>
+    {% for playerstat in playerstats %}
+      <div class="bg-white txt-black rounded p-3 mt-3">
+        <div class="bg-black txt-white rounded p-3">
+          <div class="row align-items-center">
+            <div class="col-auto">
+              <a href="{% url 'team-detail' playerstat.player.team.pk %}">
+                <img width="100" height="100" src="{{ playerstat.team.logo }}">
+              </a>
+            </div>
+            <div class="col-auto mx-auto">
+              <a href="{% url 'player-detail' playerstat.player.pk %}">
+                <img height="100" src="{{ playerstat.player.headshot }}">
+              </a>
+            </div>
+            <div class="col-auto mx-auto">
+              <a class="silent-link txt-white" href="{% url 'player-detail' playerstat.player.pk %}">
+                <h3>{{ playerstat.player.name }}</h3>
+              </a>
+            </div>
+            <div class="col-auto mx-auto">
+              <a class="silent-link txt-white" href="{% url 'player-detail' playerstat.player.pk %}">
+                <h3>{{ playerstat.player.position.name }}</h3>
+              </a>
+            </div>
+            <div class="col-auto mx-auto">
+              <h1><strong>{{ playerstat.string }}</strong></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <hr class="silent">
+{% endblock content %}

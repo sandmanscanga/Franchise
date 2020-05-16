@@ -1,14 +1,14 @@
 {% extends "app/base.html" %}
-{% block title %} - {{ title }}{% endblock title %}
+{% block title %}{{ title }}{% endblock title %}
 {% block content %}
+  <hr class="silent">
   <div class="container text-center">
-    <hr class="silent">
-    <div class="bg-white txt-black rounded p-3">
-      <div class="bg-black txt-white rounded p-3">
+    <div class="bg-white txt-black p-3">
+      <div class="bg-black txt-white p-3">
         <h1>Welcome</h1>
       </div>
       <p class="lead pt-3">The service is routing requests properly</p>
     </div>
-    <hr class="silent">
   </div>
+  <hr class="silent">
 {% endblock content %}

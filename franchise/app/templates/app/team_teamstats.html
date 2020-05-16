@@ -1,0 +1,40 @@
+{% extends "app/base.html" %}
+{% block title %} Team Stat List {% endblock title %}
+{% block content %}
+  <div class="container text-center">
+    <hr class="silent">
+    <div class="bg-white txt-black rounded p-3">
+      <div class="bg-black txt-white rounded p-3">
+        <div class="row align-items-center">
+          <div class="col">
+            <a href="{% url 'team-detail' teamstats.first.team.pk %}"><img width="100" height="100" src="{{ teamstats.first.team.logo }}"></a>
+          </div>
+          <div class="col">
+            <h1>{{ teamstats.first.team.profile.fullname }}</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="silent">
+    <div class="row">
+      {% for teamstat in teamstats %}
+        <div class="col-6">
+          <div class="bg-white txt-black rounded p-3 mb-3">
+            <div class="bg-black txt-white rounded p-3">
+              <a class="silent-link txt-white" href="{% url 'stat-detail' teamstat.stat.pk %}"><h4 class="py-4">{{ teamstat.stat.shortdesc }}</h4></a>
+              <div class="row align-items-center">
+                <div class="col-6">
+                  <a href="{% url 'team-detail' teamstat.team.pk %}"><img width="100" height="100" src="{{ teamstat.team.logo }}"></a>
+                </div>
+                <div class="col-4 mr-auto">
+                  <h1><strong>{{ teamstat.string }}</strong></h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <hr class="silent">
+  </div>
+{% endblock content %}

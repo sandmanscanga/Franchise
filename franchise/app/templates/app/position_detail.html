@@ -1,0 +1,22 @@
+{% extends "app/base.html" %}
+{% block title %} Position Detail {% endblock title %}
+{% block content %}
+  <hr class="silent">
+  <div class="container text-center">
+    <div class="bg-white txt-black p-3">
+      <div class="bg-black txt-white p-3">
+        <h1>{{ position.name }}</h1>
+      </div>
+      <hr class="silent">
+      <div class="row">
+        <div class="col">
+          <a class="btn btn-lg btn-dark w-100 py-3" href="{% url 'position-players' position.pk %}">Players</a>
+        </div>
+        <div class="col">
+          <a class="btn btn-lg btn-dark w-100 py-3" href="#">Player Stats</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="silent">
+{% endblock content %}

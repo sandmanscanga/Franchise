@@ -1,5 +1,5 @@
 {% extends "app/base.html" %}
-{% block title %} - Division Detail {% endblock title %}
+{% block title %} Division Detail {% endblock title %}
 {% block content %}
   <hr class="silent">
   <div class="container text-center">
@@ -8,11 +8,11 @@
         <h1>{{ division.name }}</h1>
       </div>
       <div class="row pt-3">
-        <div class="col-md">
+        <div class="col">
           <a class="btn btn-lg btn-dark w-100 py-3" href="{% url 'division-teams' division.pk %}">Teams</a>
         </div>
-        <div class="col-md">
-          <a class="btn btn-lg btn-dark w-100 py-3" href="#">Players</a>
+        <div class="col">
+          <a class="btn btn-lg btn-dark w-100 py-3" href="{% url 'division-players' division.pk %}">Players</a>
         </div>
       </div>
     </div>

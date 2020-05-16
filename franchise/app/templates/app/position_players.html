@@ -1,35 +1,29 @@
 {% extends "app/base.html" %}
-{% block title %} Team Players {% endblock title %}
+{% block title %} Position Players {% endblock title %}
 {% block content %}
   <div class="container text-center">
     <hr class="silent">
     <div class="bg-white txt-black rounded p-3">
       <div class="bg-black txt-white rounded p-3">
-        <div class="row align-items-center">
-          <div class="col">
-            <a href="{% url 'team-detail' players.first.team.pk %}">
-              <img width="100" height="100" src="{{ players.first.team.logo }}">
-            </a>
-          </div>
-          <div class="col-8">
-            <a class="silent-link txt-white" href="{% url 'team-detail' players.first.team.pk %}">
-              <h1>{{ players.first.team.profile.fullname }}</h1>
-            </a>
-          </div>
-        </div>
+        <h1>{{ players.first.position.name }}</h1>
       </div>
     </div>
-    <hr class="silent">
     {% for player in players %}
-      <div class="bg-white txt-black rounded p-3 mb-3">
+      <hr class="silent">
+      <div class="bg-white txt-black rounded p-3">
         <div class="bg-black txt-white rounded p-3">
           <div class="row align-items-center">
+            <div class="col">
+              <a class="silent-link txt-white" href="{% url 'team-detail' player.team.pk %}">
+                <img width="100" height="100" src="/static/app/logos/{{ player.team.profile.abbr }}.png">
+              </a>
+            </div>
             <div class="col">
               <a href="{% url 'player-detail' player.pk %}">
                 <img height="100" src="{{ player.headshot }}">
               </a>
             </div>
-            <div class="col-7">
+            <div class="col-6">
               <a class="silent-link txt-white" href="{% url 'player-detail' player.pk %}">
                 <h1>{{ player.name }}</h1>
               </a>
@@ -41,6 +35,8 @@
             </div>
           </div>
         </div>
+        <hr class="silent">
+        <a class="btn btn-lg btn-dark w-100 py-3" href="{% url 'player-playerstats' player.pk %}">Player Stats</a>
       </div>
     {% endfor %}
   </div>

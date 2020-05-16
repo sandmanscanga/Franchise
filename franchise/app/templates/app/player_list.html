@@ -1,35 +1,35 @@
 {% extends "app/base.html" %}
-{% block title %} - Player List {% endblock title %}
+{% block title %} Player List {% endblock title %}
 {% block content %}
-  <div class="container text-center">
-    <hr class="silent">
-    <div class="bg-white txt-black rounded p-3">
-      <div class="bg-black txt-white rounded p-3">
-        <h1>Players</h1>
-      </div>
-    </div>
-    <hr class="silent">
+  <div class="container">
     {% for player in players %}
-      <div class="rounded p-3 mb-3" style="background: #{{ player.team.color.main  }};color: #{{ player.team.color.alt }}">
-        <div class="rounded p-3" style="background: #{{ player.team.color.alt  }};color: #{{ player.team.color.main }}">
-          <div class="row align-items-center">
-            <div class="col-md">
+      <hr class="silent">
+      <div class="bg-white txt-black p-3">
+        <div class="bg-black txt-white p-3">
+          <div class="row text-center align-items-center">
+            <div class="col">
+              <a class="silent-link txt-white" href="{% url 'team-detail' player.team.pk %}">
+                <img width="100" height="100" src="{{ player.team.logo }}">
+              </a>
+            </div>
+            <div class="col">
               <a href="{% url 'player-detail' player.pk %}">
                 <img height="100" src="{{ player.headshot }}">
               </a>
             </div>
-            <div class="col-md-7">
-              <a class="silent-link" style="color: #{{ player.team.color.main }}" href="{% url 'player-detail' player.pk %}">
+            <div class="col-6">
+              <a class="silent-link txt-white" href="{% url 'player-detail' player.pk %}">
                 <h1>{{ player.name }}</h1>
               </a>
             </div>
-            <div class="col-md">
-              <h2>{{ player.position }}</h2>
+            <div class="col">
+              <a class="silent-link txt-white" href="{% url 'player-detail' player.pk %}">
+                <h1>{{ player.position.name }}</h1>
+              </a>
             </div>
           </div>
         </div>
       </div>
     {% endfor %}
-    <hr class="silent">
   </div>
 {% endblock content %}
