@@ -1,0 +1,23 @@
+{% extends "app/base.html" %}
+{% block title %} Position List {% endblock title %}
+{% block content %}
+  <hr class="silent">
+  <div class="container">
+    <div class="bg-white txt-black p-3">
+      <div class="bg-black txt-white p-3">
+        <h1 class="text-center">Positions</h1>
+      </div>
+      <div class="row">
+        {% for position in positions %}
+          <div class="col-2 pt-3">
+            <a class="btn btn-lg btn-dark w-100 py-3" href="{% url 'position-detail' position.pk %}">
+              {{ position.name }}
+            </a>
+          </div>
+        {% endfor %}
+        <hr class="silent">
+      </div>
+    </div>
+  </div>
+  <hr class="silent">
+{% endblock content %}

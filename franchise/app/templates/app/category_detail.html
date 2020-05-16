@@ -1,0 +1,33 @@
+{% extends "app/base.html" %}
+{% block title %} Category Detail {% endblock title %}
+{% block content %}
+  <hr class="silent">
+  <div class="container text-center">
+    <div class="bg-white txt-black p-3">
+      <div class="bg-black txt-white p-3">
+        <h1>{{ category.name }}</h1>
+      </div>
+    </div>
+    <hr class="silent">
+    {% for stat in category.stat_set.all %}
+      <div class="bg-white txt-black p-3 mb-3">
+        <div class="bg-black txt-white p-3">
+          <div class="row align-items-center">
+            <div class="col">
+              <a class="silent-link txt-white" href="{% url 'stat-detail' stat.pk %}">
+                <h1><strong>{{ stat.abbr }}</strong></h1>
+              </a>
+            </div>
+            <div class="col">
+              <a class="silent-link txt-white" href="{% url 'stat-detail' stat.pk %}">
+                <h3>{{ stat.shortdesc }}</h3>
+              </a>
+            </div>
+          </div>
+        </div>
+        <p class="lead pt-3">{{ stat.fulldesc }}</p>
+      </div>
+    {% endfor %}
+    <hr class="silent">
+  </div>
+{% endblock content %}

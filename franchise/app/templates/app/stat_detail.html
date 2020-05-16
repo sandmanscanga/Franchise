@@ -1,0 +1,31 @@
+{% extends "app/base.html" %}
+{% block title %} Stat Detail {% endblock title %}
+{% block content %}
+  <hr class="silent">
+  <div class="container text-center">
+    <div class="bg-white txt-black p-3 rounded">
+      <div class="bg-black txt-white p-3 rounded">
+        <div class="row align-items-center">
+          <div class="col">
+            <h1><strong>{{ stat.abbr }}</strong></h1>
+          </div>
+          <div class="col">
+            <h3>{{ stat.shortdesc }}</h3>
+          </div>
+        </div>
+      </div>
+      <hr class="silent">
+      <p class="lead py-3">{{ stat.fulldesc }}</p>
+      <hr class="silent">
+      <div class="row">
+        <div class="col">
+          <a class="btn btn-lg btn-dark w-100 py-3" href="#">Team Stats</a>
+        </div>
+        <div class="col">
+          <a class="btn btn-lg btn-dark w-100 py-3" href="{% url 'stat-playerstats' stat.pk %}">Player Stats</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="silent">
+{% endblock content %}
