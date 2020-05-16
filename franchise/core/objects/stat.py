@@ -54,5 +54,10 @@ class Stat(Table):
                     value = 0.0
                 else:
                     value = (int(_points) / int(_total)) * 100  # percent
+            elif "." in string:
+                (_whole, _decimal) = string.split(".")
+                value = int(_whole) + (int(_decimal) / (10 ** len(_decimal)))
+
+        value = round(float(value), 3)
 
         return (value, string)
