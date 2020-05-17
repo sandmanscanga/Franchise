@@ -12,6 +12,7 @@ from objects.stat import Stat
 from objects.teamstat import TeamStat
 from objects.oppstat import OppStat
 from objects.playerstat import PlayerStat
+from objects.week import Week
 from indie.fetch_logos import fetch_logos
 from indie.fetch_headshots import fetch_headshots
 import json
@@ -21,22 +22,24 @@ import os
 def build_fixtures():
     cache_dir = __file__.replace("loader.py", "cache")
 
-    obj_map = {
-        "division": list(Division()),
-        "position": list(Position()),
-        "category": list(Category()),
-        "team": list(Team()),
-        "record": list(Record()),
-        "profile": list(Profile()),
-        "color": list(Color()),
-        "teamnav": list(TeamNav()),
-        "player": list(Player()),
-        "playernav": list(PlayerNav()),
-        "stat": list(Stat()),
-        "teamstat": list(TeamStat()),
-        "oppstat": list(OppStat()),
-        "playerstat": list(PlayerStat())
-    }
+    # obj_map = {
+    #     "division": list(Division()),
+    #     "position": list(Position()),
+    #     "category": list(Category()),
+    #     "team": list(Team()),
+    #     "record": list(Record()),
+    #     "profile": list(Profile()),
+    #     "color": list(Color()),
+    #     "teamnav": list(TeamNav()),
+    #     "player": list(Player()),
+    #     "playernav": list(PlayerNav()),
+    #     "stat": list(Stat()),
+    #     "teamstat": list(TeamStat()),
+    #     "oppstat": list(OppStat()),
+    #     "playerstat": list(PlayerStat())
+    # }
+    week = Week()
+    return
 
     fixture_dir = f"{cache_dir}/fixtures"
     os.makedirs(fixture_dir, exist_ok=True)
