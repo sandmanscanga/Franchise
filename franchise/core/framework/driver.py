@@ -4,6 +4,8 @@ import json
 import time
 import os
 
+_sep = os.path.sep
+
 
 def fetch_json(url, filepath, reinit=False):
     if not os.path.isfile(filepath) or reinit:
@@ -14,7 +16,7 @@ def fetch_json(url, filepath, reinit=False):
             allow_redirects=False
         )
         html = r.text
-        filedir = "/".join(filepath.split("/")[:-1])
+        filedir = _sep.join(filepath.split(_sep)[:-1])
         os.makedirs(filedir, exist_ok=True)
         with open(filepath, "w") as f:
             f.write(html)
@@ -71,12 +73,12 @@ def get_team_index(json_dict):
 
 
 def get_nfl_json(reinit=False):
-    cache_dir = __file__.replace("framework/driver.py", "cache")
-    nfl_json_path = f"{cache_dir}/nfl.json"
+    cache_dir = __file__.replace(f"framework{_sep}driver.py", "cache")
+    nfl_json_path = f"{cache_dir}{_sep}nfl.json"
 
     if not os.path.isfile(nfl_json_path) or reinit:
         url = "https://www.espn.com/nfl/teams"
-        filepath = f"{cache_dir}/nfl.html"
+        filepath = f"{cache_dir}{_sep}nfl.html"
         json_dict = fetch_json(url, filepath)
 
         teams = get_team_index(json_dict)
@@ -94,7 +96,7 @@ def get_nfl_json(reinit=False):
 
             nfl_json[team_name] = team_parts
 
-        nfl_json_dir = "/".join(nfl_json_path.split("/")[:-1])
+        nfl_json_dir = _sep.join(nfl_json_path.split(_sep)[:-1])
         os.makedirs(nfl_json_dir, exist_ok=True)
         with open(nfl_json_path, "w") as f:
             json.dump(nfl_json, f)

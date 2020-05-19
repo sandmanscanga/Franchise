@@ -17,6 +17,8 @@ from indie.fetch_headshots import fetch_headshots
 import json
 import os
 
+_sep = os.path.sep
+
 
 def build_fixtures():
     cache_dir = __file__.replace("loader.py", "cache")
@@ -38,17 +40,17 @@ def build_fixtures():
         "playerstat": list(PlayerStat())
     }
 
-    fixture_dir = f"{cache_dir}/fixtures"
+    fixture_dir = f"{cache_dir}{_sep}fixtures"
     os.makedirs(fixture_dir, exist_ok=True)
 
     fixtures = []
     for key, value in obj_map.items():
-        filename = f"{fixture_dir}/{key}.json"
+        filename = f"{fixture_dir}{_sep}{key}.json"
         with open(filename, "w") as f:
             json.dump(value, f)
         fixtures += value
 
-    with open(f"{fixture_dir}/all.json", "w") as f:
+    with open(f"{fixture_dir}{_sep}all.json", "w") as f:
         json.dump(fixtures, f)
 
 
@@ -83,17 +85,21 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
     if args.logos:
-        outdir = __file__.replace("loader.py", "../app/static/app/logos/")
+        _outdir = _sep.join(["..", "app", "static", "app", "logos"]) + _sep
+        outdir = __file__.replace("loader.py", _outdir)
         fetch_logos(outdir=outdir)
     elif args.headshots:
-        outdir = __file__.replace("loader.py", "../app/static/app/headshots/")
+        _outdir = _sep.join(["..", "app", "static", "app", "headshots"]) + _sep
+        outdir = __file__.replace("loader.py", _outdir)
         fetch_headshots(outdir)
     elif args.wipe:
         print("[!] Wiping the project database records.")
-        wipe_command = __file__.replace("loader.py", "utils/wipe.sh")
+        _outdir = _sep.join(["utils", "wipe.sh"])
+        wipe_command = __file__.replace("loader.py", _outdir)
         os.system(wipe_command)
     elif args.reload:
-        reload_command = __file__.replace("loader.py", "utils/reload.sh")
+        _outdir = _sep.join(["utils", "reload.sh"])
+        reload_command = __file__.replace("loader.py", _outdir)
         os.system(reload_command)
     elif args.build:
         build_fixtures()

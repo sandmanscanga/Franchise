@@ -27,12 +27,13 @@ def fetch_headshots(outdir):
             player_guid = athlete.get("guid")
 
             if not "nophoto" in headshot_url:
-                outpath = f"{outdir}/{player_guid}.png"
+                _sep = os.path.sep
+                outpath = f"{outdir}{_sep}{player_guid}.png"
                 if os.path.isfile(outpath):
                     print(f"[*] Skipping headshot: {outpath}")
                     continue
 
-                print(f"[+] Getting {team_id}/{player_id} headshot: {headshot_url}")
+                print(f"[+] Getting {team_id}{_sep}{player_id} headshot: {headshot_url}")
                 r = requests.get(headshot_url, timeout=10, allow_redirects=False)
                 with open(outpath, "wb") as f:
                     f.write(r.content)

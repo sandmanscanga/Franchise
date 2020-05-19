@@ -15,7 +15,8 @@ def fetch_logos(outdir=""):
         logo_url = json_data.get("logo")
         abbrev = json_data.get("abbrev")
 
-        outpath = f"{outdir}/{abbrev}.png"
+        _sep = os.path.sep
+        outpath = f"{outdir}{_sep}{abbrev}.png"
         if os.path.isfile(outpath):
             print(f"[*] Skipping logo: {outpath}")
             continue
